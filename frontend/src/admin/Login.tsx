@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Mail } from "lucide-react"
+import { LockKeyhole, Mail } from "lucide-react"
 
 
 
@@ -18,15 +18,17 @@ const Login = () => {
 
           <Input
             type="email"
-            placeholder="Enter Your email" className="pl-8"/>
+            placeholder="Enter Your email" className="pl-10 focus-visible:ring-1" />
           <Mail className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none"/>
         </div>
 
-        <div>
+        <div className="mb-4">
           {/* <Label>Password</Label> */}
           <Input
             type="password"
-            placeholder="Enter Your Password" />
+            placeholder="Enter Your Password" className="pl-10 focus-visible:ring-1" />
+
+            <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500"/>
 
 
         </div>
