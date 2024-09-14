@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 
-import { Loader2, LockKeyhole, Mail } from "lucide-react"
+import {  Loader2, LockKeyhole, Mail, PhoneOutgoing, User } from "lucide-react"
 import { ChangeEvent, FormEvent, useState } from "react"
 import { Link } from "react-router-dom"
 
@@ -49,6 +49,17 @@ const Signup = () => {
           <h1 className="font-bold text-2xl">Adhikari Eats</h1>
           <div className="mb-4 relative">
             <Input
+              type="fullname"
+              placeholder="Enter Your fullname"
+              value={input.fullname}
+              onChange={changeEventHandler}
+              name="fullname"
+              className="pl-10 focus-visible:ring-1"
+            />
+            <User className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
+          </div>
+          <div className="mb-4 relative">
+            <Input
               type="email"
               placeholder="Enter Your Email"
               value={input.email}
@@ -71,6 +82,17 @@ const Signup = () => {
           />
           <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500" />
         </div>
+        <div className="mb-4 relative">
+            <Input
+              type="contact"
+              placeholder="Enter Your contact"
+              value={input.contact}
+              onChange={changeEventHandler}
+              name="contact"
+              className="pl-10 focus-visible:ring-1"
+            />
+            <PhoneOutgoing className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
+          </div>
 
         <div className="mb-10">
           {loading ? (
@@ -80,7 +102,7 @@ const Signup = () => {
             </Button>
           ) : (
             <Button type="submit" className="w-full bg-orange-500 hover:bg-hoverOrange">
-              Login
+              Signup
             </Button>
           )}
         </div>
@@ -88,9 +110,9 @@ const Signup = () => {
         <Separator />
 
         <p className="mt-2">
-          Don't have an account?{" "}
-          <Link to="/signup" className="text-blue-500">
-            Signup
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-500">
+            Login
           </Link>
         </p>
       </form>
