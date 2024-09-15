@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
+import { LoginInputState } from "@/schema/userSchema"
 
 import { Loader2, LockKeyhole, Mail } from "lucide-react"
 import { ChangeEvent, FormEvent, useState } from "react"
@@ -16,10 +17,10 @@ import { Link } from "react-router-dom"
 //   email: String;
 //   password: String,
 // }
-type LoginInputState= {
-  email: string;
-  password: string,
-}
+// type LoginInputState= {
+//   email: string;
+//   password: string,
+// }
 
 const Login = () => {
   const [input, setInput] = useState<LoginInputState>({

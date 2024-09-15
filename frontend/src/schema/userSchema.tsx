@@ -10,3 +10,13 @@ export const userSignupSchema = z.object({
 
 })
 export type signupInputState = z.infer<typeof userSignupSchema>
+
+export const userLoginSchema = z.object({
+    
+    email:z.string().email("Invalid email address"),
+    password: z.string().min(6,"Password must be at least 6 characters "),
+   
+
+
+})
+export type LoginInputState = z.infer<typeof userLoginSchema>
