@@ -32,7 +32,7 @@ const Signup = () => {
     contact: ""
   
   });
-  const [errors, setErrors] = useState<any>({})
+  const [errors, setErrors] = useState<Partial<signupInputState>>({})
   const changeEventHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target;
     setInput({...input, [name]:value});
@@ -43,7 +43,11 @@ const Signup = () => {
     const result = userSignupSchema.safeParse(input);
     if(!result.success) {
         const fieldErrors= result.error.formErrors.fieldErrors;
+        setErrors(fieldErrors as Partial<signupInputState>);
+        return;
     }
+    //login api implementation start here
+
     console.log(input);
   }
   const loading = false;
@@ -64,6 +68,9 @@ const Signup = () => {
               className="pl-10 focus-visible:ring-1"
             />
             <User className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
+            {
+                errors && <span className="text-sm text-red-500">{errors.fullname}</span>
+            }
           </div>
           <div className="mb-4 relative">
             <Input
@@ -75,6 +82,9 @@ const Signup = () => {
               className="pl-10 focus-visible:ring-1"
             />
             <Mail className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
+            {
+                errors && <span className="text-sm text-red-500">{errors.email}</span>
+            }
           </div>
         </div>
 
@@ -88,6 +98,9 @@ const Signup = () => {
             className="pl-10 focus-visible:ring-1"
           />
           <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500" />
+          {
+                errors && <span className="text-sm text-red-500">{errors.password}</span>
+            }
         </div>
         <div className="mb-4 relative">
             <Input
@@ -99,6 +112,9 @@ const Signup = () => {
               className="pl-10 focus-visible:ring-1"
             />
             <PhoneOutgoing className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
+            {
+                errors && <span className="text-sm text-red-500">{errors.contact}</span>
+            }
           </div>
 
         <div className="mb-10">
