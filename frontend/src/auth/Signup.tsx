@@ -69,7 +69,7 @@ const Signup = () => {
             />
             <User className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
             {
-                errors && <span className="text-sm text-red-500">{errors.fullname}</span>
+                errors && <span className="text-xs text-red-500">{errors.fullname}</span>
             }
           </div>
           <div className="mb-4 relative">
@@ -83,7 +83,7 @@ const Signup = () => {
             />
             <Mail className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
             {
-                errors && <span className="text-sm text-red-500">{errors.email}</span>
+                errors && <span className="text-xs text-red-500">{errors.email}</span>
             }
           </div>
         </div>
@@ -99,7 +99,7 @@ const Signup = () => {
           />
           <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500" />
           {
-                errors && <span className="text-sm text-red-500">{errors.password}</span>
+                errors && <span className="text-xs text-red-500">{errors.password}</span>
             }
         </div>
         <div className="mb-4 relative">
@@ -113,7 +113,7 @@ const Signup = () => {
             />
             <PhoneOutgoing className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
             {
-                errors && <span className="text-sm text-red-500">{errors.contact}</span>
+                errors && <span className="text-xs text-red-500">{errors.contact}</span>
             }
           </div>
 
