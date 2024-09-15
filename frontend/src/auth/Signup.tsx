@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
+import { signupInputState, userSignupSchema } from "@/schema/userSchema"
 
 import {  Loader2, LockKeyhole, Mail, PhoneOutgoing, User } from "lucide-react"
 import { ChangeEvent, FormEvent, useState } from "react"
@@ -16,27 +17,33 @@ import { Link } from "react-router-dom"
 //   email: String;
 //   password: String,
 // }
-type SignupInputState= {
-    fullname:string;
-  email: string;
-  password: string,
-  contact:string,
-}
+// type SignupInputState= {
+//     fullname:string;
+//   email: string;
+//   password: string,
+//   contact:string,
+// }
 
 const Signup = () => {
-  const [input, setInput] = useState<SignupInputState>({
+  const [input, setInput] = useState<signupInputState>({
     fullname: "",
     email: "",
     password: "",
     contact: ""
   
   });
+  const [errors, setErrors] = useState<any>({})
   const changeEventHandler = (e:ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target;
     setInput({...input, [name]:value});
   }
   const loginSubmitHandler = (e:FormEvent) => {
     e.preventDefault();
+    //form validation check start
+    const result = userSignupSchema.safeParse(input);
+    if(!result.success) {
+        const fieldErrors= result.error.formErrors.fieldErrors;
+    }
     console.log(input);
   }
   const loading = false;
