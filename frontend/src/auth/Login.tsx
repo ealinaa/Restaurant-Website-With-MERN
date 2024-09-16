@@ -149,7 +149,7 @@ if(!result.success){
               Login
             </Button>
           )}
-          <div className="mt-4">
+          <div className="mt-4 text-center">
           <Link to="/forgetpassword" className="hover:text-blue-500 hover:underline">Forget Password</Link>
         </div>
           </div>
