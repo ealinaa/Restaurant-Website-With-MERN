@@ -13,6 +13,7 @@ import VerifyEmail from './auth/VerifyEmail'
 
 import HeroSection from './components/HeroSection'
 import MainLayout from './layout/MainLayout'
+import Profile from './components/Profile'
 
 
 const appRouter = createBrowserRouter([
@@ -24,6 +25,10 @@ const appRouter = createBrowserRouter([
     {
     path: "/",
     element:<HeroSection/>
+    },
+    {
+      path: "/profile",
+      element:<Profile/>
     }
   ]
   }, 
