@@ -5,8 +5,7 @@ import { Link } from "react-router-dom"
 import { HandPlatter, Loader2, Menu, Moon, PackageCheck, ShoppingCart, SquareMenu, Sun, User, UtensilsCrossed } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
-import { Label } from "@radix-ui/react-label";
-import { Input } from "./ui/input";
+
 import { Button } from "./ui/button";
 import { Separator } from "@radix-ui/react-separator";
 
