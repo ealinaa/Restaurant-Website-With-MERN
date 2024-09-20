@@ -7,7 +7,7 @@ export const sendVerificationEmail = async (email: string, verificationToken: st
             from:sender,
             to: recipient,
             subject: 'verify your email',
-            //html: html
+            // html: htmlContent.replace("{verificationToken}, verificationToken"),
             category:'Email Verification'
         })
 
@@ -58,5 +58,27 @@ export const sendPasswordResetEmail = async(email: string,resetURL:string ) => {
     } catch(error) {
         console.log(error)
         throw new Error("Failed to reset your password")
+    }
+
+}
+
+
+export const sendResetSuccessEmail= async(email:string, resetURL: string) => {
+    const recipient = [ {email} ] 
+    const HtmlContent = ""
+    try{
+        const res = await client.send ({
+            from:sender,
+            to:recipient,
+            subject:"Password Reset Successfully",
+            html: HtmlContent,
+            category: "Password Reset"
+            
+
+        })
+
+    } catch(error) {
+        console.log(error)
+        throw new Error("Failed to send reset success email")
     }
 }
