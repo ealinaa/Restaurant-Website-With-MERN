@@ -1,3 +1,4 @@
+import { generatePasswordResetEmailHtml, generateResetSuccessEmailHtml, generateWelcomeEmailHtml, htmlContent } from "./htmlEmail";
 import { client, sender } from "./mailtrap"
 
 export const sendVerificationEmail = async (email: string, verificationToken: string) => {
@@ -7,7 +8,7 @@ export const sendVerificationEmail = async (email: string, verificationToken: st
             from:sender,
             to: recipient,
             subject: 'verify your email',
-            // html: htmlContent.replace("{verificationToken}, verificationToken"),
+            html: htmlContent.replace("{verificationToken}", verificationToken),
             category:'Email Verification'
         })
 
@@ -22,7 +23,7 @@ export const sendVerificationEmail = async (email: string, verificationToken: st
 
 export const  sendWelcomeEmail = async(email:string,name: string) => {
     const recipient = [ {email}];
-    const htmlContent = ""
+    const htmlContent = generateWelcomeEmailHtml(name)
     try{
         const res = await client.send({
             from: sender,
@@ -46,7 +47,7 @@ export const  sendWelcomeEmail = async(email:string,name: string) => {
 
 export const sendPasswordResetEmail = async(email: string,resetURL:string ) => {
     const recipient = [{email}]
-    const htmlContent= ""
+    const htmlContent= generatePasswordResetEmailHtml(resetURL)
     try{
         const res = await client.send({
             from: sender,
@@ -65,7 +66,7 @@ export const sendPasswordResetEmail = async(email: string,resetURL:string ) => {
 
 export const sendResetSuccessEmail= async(email:string, resetURL: string) => {
     const recipient = [ {email} ] 
-    const HtmlContent = ""
+    const HtmlContent = generateResetSuccessEmailHtml()
     try{
         const res = await client.send ({
             from:sender,
