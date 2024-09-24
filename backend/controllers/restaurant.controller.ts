@@ -125,3 +125,41 @@ export const getRestaurantOrder= async(req: Request ,res: Response) => {
         return res.status(500).json({message: "Internal Server Error"})
     }
 }
+
+export const updateOrderStatus = async(req: Request, res: Response) => {
+    try{
+        const {orderId} =req.params
+        const {status}= req.body
+        const order = await Order.findById(orderId)
+        if(!order) {
+            return res.status(404).json({
+                success: false,
+                message: "Order not found"
+            })
+        }
+        order.status = status
+        await order.save()
+        return res.status(200).json({
+            success: true,
+            message: "status Updated"
+        })
+
+    } catch(error) {
+        console.log(error)
+        return res.status(500).json({message: "Internal server status"})
+    }
+
+}
+
+export const searchRestaurant = async (req: Request, res: Response) => {
+    try {
+        const searchText = req.params.searchText || ""
+        const searchQuery = req.query.searchQuery as string || ""
+        const selectedCuisines = (req.query.selectedCuisines as string || "").split(",").filter(cuisine=>cuisine)
+        
+
+        
+    } catch (error) {
+        
+    }
+}
