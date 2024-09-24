@@ -156,10 +156,47 @@ export const searchRestaurant = async (req: Request, res: Response) => {
         const searchText = req.params.searchText || ""
         const searchQuery = req.query.searchQuery as string || ""
         const selectedCuisines = (req.query.selectedCuisines as string || "").split(",").filter(cuisine=>cuisine)
-        
+        const query : any ={ };
+        //basic search based on serachText (name, city,country)
+        if(searchText) {
+            query.$or = [
+                {restaurantName: {$regex:searchText, $options: 'i'} },
+                {city: { $regex: searchText, $options: 'i'}},
+                {country: { $regex: searchText, $options: 'i'}},
+           
+        ]
+    }
+//filter on the basic of serachquery
 
+        if(searchQuery) {
+            query.$or =[
+                {restaurantName: {$regex:searchText, $options:"i"}},
+                {cuisines: {$regex:searchQuery, options: 'i'}}
+
+            ]
+        }
+        //console.log(query)
+        if(selectedCuisines.length > 0) {
+            query.cuisines= {$in:selectedCuisines}
+        }
+        const restaurants = await Restaurant.find(query)
+        return res.status(200).json({
+            success: true,
+            data:restaurants
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({mesage: "Internal Server error"})
+    }
+
+}
+
+export const getSingleRestaurant= async(req: Request, res: Response) => {
+    try {
         
     } catch (error) {
         
+        
     }
+
 }
