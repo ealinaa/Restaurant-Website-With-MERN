@@ -37,6 +37,17 @@ export const addMenu = async(req: Request, res: Response) => {
         }
     } catch (error) {
        console.log(error) 
-       return res.status(500).json({message:"Internal server erroe"})
+       return res.status(500).json({message:"Internal server error"})
+    }
+}
+
+export const editMenu = async(req: Request, res: Response) => {
+    try {
+        const {id} = req.params
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({message:"Internal server error"})
+        
     }
 }
