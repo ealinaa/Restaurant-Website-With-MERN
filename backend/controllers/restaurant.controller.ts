@@ -7,7 +7,7 @@ import { Order } from "../models/order.model";
 
 export const createRestaurant = async(req:Request, res:Response) => {
     try{
-        const{restaurantName, city, country, price, deliveryTime,cuisines} = req.body
+        const{restaurantName, city, country, deliveryTime,cuisines} = req.body
 
         const restaurant = await Restaurant.findOne({User:req.id});
         const file = req.file
@@ -193,9 +193,22 @@ export const searchRestaurant = async (req: Request, res: Response) => {
 
 export const getSingleRestaurant= async(req: Request, res: Response) => {
     try {
+        const restaurantId  = req.params.id;
+        const restaurant = await Restaurant.findById(restaurantId).populate({
+            path:'menu',
+            options: {createdAt: -1}
+        })
+        if(!restaurant) {
+            return res.status(404).json({
+                success: false,
+                message: "Restaurant not found"
+            })
+        }
+        return res.status(200).json(restaurant)
         
     } catch (error) {
-        
+        console.log(error)
+        return res.status(500).json({message: "Internal Server error"})
         
     }
 
