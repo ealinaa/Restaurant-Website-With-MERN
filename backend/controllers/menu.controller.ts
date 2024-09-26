@@ -70,4 +70,29 @@ export const editMenu = async(req:Request, res:Response)=>{
         return res.status(500).json({message:"Internal server error in edit menu"}); 
     }
 }
+// not needed 
+export const deleteMenu = async(req:Request, res:Response)=>{
+    try {
+        const {menuId} = req.params
 
+        const menu = await Menu.findOneAndDelete({_id:menuId})
+
+        if(!menu){
+            return res.status(400).json({
+                success:false,
+                message:"Menu not found"
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Menu deleted successfully",
+            menu
+        })
+
+        
+    } catch (error:any) {
+        console.log(error);
+        return res.status(500).json({message:"Internal server error in delete menu"}); 
+    }
+}
