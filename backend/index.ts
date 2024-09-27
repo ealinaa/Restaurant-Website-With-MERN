@@ -3,9 +3,11 @@ import dotenv from "dotenv";
 import connectDB from "./db/conectionDB";
 import UserRoute from "./routes/user.route"
 import restaurantRoute from "./routes/restaurant.route"
+import menuRoute from "./routes/menu.route"
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser"
 import cors from "cors"
+
 
 dotenv.config()
 
@@ -30,6 +32,7 @@ app.use(cors(corsOptions))
 //api
 app.use("/api/v1/User", UserRoute)
 app.use("/api/v1/restaurant",restaurantRoute)
+app.use("/api/v1/menu",menuRoute)
 app.listen(PORT, () => {
     connectDB()
    
