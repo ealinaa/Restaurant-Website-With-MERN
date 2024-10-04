@@ -5,12 +5,14 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 
 import { Badge, Globe, MapPin, X } from "lucide-react";
-import { Card, CardContent, CardFooter } from "./ui/card";
-import { AspectRatio } from "./ui/aspect-ratio";
-import { Skeleton } from "./ui/skeleton";
+
+
 import { useRestaurantStore } from "@/store/useRestaurantStore";
 import { Restaurant } from "@/types/restaurantType";
 import FilterPage from "./FilterPage";
+import { AspectRatio } from "@radix-ui/react-aspect-ratio";
+import { Skeleton } from "./ui/skeleton";
+import { Card, CardContent, CardFooter } from "./ui/card";
 
 const SearchPage = () => {
   const params = useParams();

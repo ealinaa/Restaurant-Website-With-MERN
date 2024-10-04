@@ -2,10 +2,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { LoginInputState, userLoginSchema } from "@/schema/userSchema"
+import { useUserStore } from "@/store/useUserStore"
 
 import { Loader2, LockKeyhole, Mail } from "lucide-react"
 import { ChangeEvent, FormEvent, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 // let age = 21; // age always is number
@@ -28,23 +29,29 @@ const Login = () => {
     password: "",
   });
   const [errors, setErrors] = useState<Partial<LoginInputState>>({})
-  const changeEventHandler = (e:ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target;
-    setInput({...input, [name]:value});
-  }
-  const loginSubmitHandler = (e:FormEvent) => {
-    e.preventDefault();
-//form data
-const result = userLoginSchema.safeParse(input);
-if(!result.success){
-  const fieldErrors = result.error.formErrors.fieldErrors;
-  setErrors(fieldErrors as Partial<LoginInputState>);
-  return;
-}
+  const { loading, login } = useUserStore()
+  const navigate = useNavigate()
 
-    console.log(input);
+  const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInput({ ...input, [name]: value });
   }
-  const loading = false;
+  const loginSubmitHandler = async (e: FormEvent) => {
+    e.preventDefault();
+    //form data
+    const result = userLoginSchema.safeParse(input);
+    if (!result.success) {
+      const fieldErrors = result.error.formErrors.fieldErrors;
+      setErrors(fieldErrors as Partial<LoginInputState>);
+      return;
+    }
+    try {
+      await login(input);
+      navigate("/");
+    } catch (error) {console.log(error);
+    }
+  }
+
   return (
 
     // <div className="flex items-center justify-center min-h-screen">
@@ -117,9 +124,9 @@ if(!result.success){
             />
             <Mail className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
             {
-                errors && <span className="text-xs text-red-500">{errors.email}</span>
+              errors && <span className="text-xs text-red-500">{errors.email}</span>
             }
-            
+
           </div>
         </div>
 
@@ -134,8 +141,8 @@ if(!result.success){
           />
           <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500" />
           {
-                errors && <span className="text-xs text-red-500">{errors.password}</span>
-            }
+            errors && <span className="text-xs text-red-500">{errors.password}</span>
+          }
         </div>
 
         <div className="mb-10">
@@ -150,9 +157,9 @@ if(!result.success){
             </Button>
           )}
           <div className="mt-4 text-center">
-          <Link to="/forgetpassword" className="hover:text-blue-500 hover:underline">Forget Password</Link>
-        </div>
+            <Link to="/forgetpassword" className="hover:text-blue-500 hover:underline">Forget Password</Link>
           </div>
+        </div>
 
         <Separator />
 
