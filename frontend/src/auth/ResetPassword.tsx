@@ -20,10 +20,10 @@ const ResetPassword = ( ) => {
         type="password"
         value={newPassword}
         onChange={(e) =>setNewPassword(e.target.value)}
-        placeholder="Enter Your New Password "
+        placeholder="Enter Your New Password"
         className="pl-10"
         />
-        <LockKeyholeIcon className="absolute inset-y-2 left-2 text-gray-600 pointer-events-none"/>
+        <LockKeyholeIcon className="absolute inset-y-2 left-2 text-yellow-600 pointer-events-none"/>
 
         </div>
         {

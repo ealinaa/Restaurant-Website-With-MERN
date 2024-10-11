@@ -9,20 +9,20 @@ import { ChangeEvent, FormEvent, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
 
-// let age = 21; // age always is number
-// age = "hello"; 
+let age = 21; // age always is number
+age = "hello"; 
 
-// typescript ma type define garni 2 ota tarika huncha
+typescript ma type define garni 2 ota tarika huncha
 
-// interface LoginInputState {
-//   email: String;
-//   password: String,
-// }
-// type SignupInputState= {
-//     fullname:string;
-//   email: string;
-//   password: string,
-//   contact:string,
+interface LoginInputState {
+  email: String;
+  password: String,
+}
+type SignupInputState= {
+    fullname:string;
+  email: string;
+  password: string,
+  contact:string,
 // }
 
 const Signup = () => {

@@ -73,7 +73,7 @@ const VerifyEmail = () => {
               disabled
               className="bg-orange hover:bg-hoverOrange mt-6 w-full"
             >
-              <Loader2 className="mr-2 w-4 h-4 animate-spin ps-9" />
+              <Loader2 className="mr-2 w-4 h-4 animate-spin " />
             Please Wait
             </Button>
           ) : (
