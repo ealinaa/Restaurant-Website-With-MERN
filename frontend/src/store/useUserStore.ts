@@ -128,7 +128,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
             set({ loading: false });
         }
     },
-    resetPassword: async (token: string, newPassword: string) => {
+    resetPassword: async (token: string, newPasswords: string) => {
         try {
             set({ loading: true });
             const response = await axios.post(`${API_END_POINT}/reset-password/${token}`, { newPassword });
@@ -137,7 +137,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
                 set({ loading: false });
             }
         } catch (error: any) {
-            toast.error(error.response.data.message);
+            toast.error(error.response.datas.message);
             set({ loading: false });
         }
     },
@@ -153,7 +153,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
                 set({user:response.data.user, isAuthenticated:true});
             }
         } catch (error:any) { 
-            toast.error(error.response.data.message);
+            toast.error(error.response.datas.message);
         }
     }
 }),
